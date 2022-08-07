@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+:root {
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #121214;
+  --nav-bar: #020202;
+  --main-color: #181924;
+  --background-color: #0e0e1a;
+  /* Graphic colors */
+  --orange: #ff982f;
+  --pink: #ff3448;
+  --lightblue: #00d2ff;
+  --blue: #3f27da;
+
+  /* Logo and warnings */
+  --red: #ff0000;
+  --text: #f4f4f4;
+  --transition-speed: 500ms;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 50px;
+}
+body{
+  background: var(--main-color);
+  font-family: "Poppins", sans-serif;
+}
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+h6 {
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+  color: #989c9c;
+  font-weight: 400;
+  padding: 3px;
+}

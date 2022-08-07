@@ -1,0 +1,35 @@
+:root {
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #121214;
+    --nav-bar: #020202;
+    --main-color: #181924;
+    --background-color: #0e0e1a;
+}
+.row{
+    width: 80%;
+    height: 60px;
+    background-color: var(--bg-primary);
+    margin: auto;
+    border: 1px solid var(--red);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    padding: 15px 0;
+}
+.row-item{
+    text-align: center;
+}
+.row p{
+    color: var(--text);
+}
+.row .row-country{
+    color: var(--text);
+}
+.country-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}

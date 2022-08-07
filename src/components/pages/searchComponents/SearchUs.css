@@ -1,0 +1,18 @@
+
+.search-filter{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 200px;
+    justify-content: center;
+    z-index: 900;
+    text-align: center;
+    color: aliceblue;
+    margin: auto;
+}
+.search-filter select{
+    width: 200px;
+    margin: auto;
+}

@@ -1,0 +1,33 @@
+.loading-main{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.objects-box {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.objects-box p{
+    color: #fff;
+    text-align: center;
+}
+
+.logo-loading{
+    width: 80px;
+    z-index: 1000;
+    margin: auto;
+    animation: loading 2s linear infinite ;
+    
+}
+@keyframes loading {
+    0%{
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}

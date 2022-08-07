@@ -1,0 +1,103 @@
+:root {
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #121214;
+    --nav-bar: #020202;
+    --main-color: #181924;
+    --background-color: #0e0e1a;
+    /* Graphic colors */
+    --orange: #ff982f;
+    --pink: #ff3448;
+    --lightblue: #00d2ff;
+    --blue: #3f27da;
+  
+    /* Logo and warnings */
+    --red: #902222;
+    --text: #f4f4f4;
+    --transition-speed: 500ms;
+  }
+
+/* Map */
+.dashboard-page{
+    margin-bottom: 40px;
+}
+.dashboard-page h1{
+   display: flex;
+   justify-content: center;
+   padding-top: 20px;
+
+}
+
+.map-div{
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    /* background-color: var(--red); */
+    
+}
+/* LEAFLET css */
+.leaflet-container{
+    width: 80%;
+    height: 95vh;
+    background-color: var(--main-color);
+    border: 1px solid var(--red);
+}
+
+/* COUNTRY LIST */
+.country-title{
+    margin-top: 40px;
+    padding: 50px 0 30px 0;
+}
+.container-bar{
+    width: 80%;
+    height: 50px;
+    margin: auto;
+    background-color: var(--red);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+    
+}
+.container-bar h3{
+    color: var(--text);
+    padding-top: 10px;
+    text-align: center;
+}
+
+/* Buttons */
+.filters{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+.filter-text{
+    text-align: center;
+    color: var(--text);
+    padding-bottom: 10px;
+}
+.btn{
+    border: none;
+    padding: 10px 20px;
+    color: var(--text);
+    background-color: var(--blue);
+}
+.btn:hover{
+    background: var(--red);
+}
+.btn-p{
+    border-radius: 10px 0 0 10px;
+    border-right: 1px solid var(--blue);
+}
+.btn-p-and-s{
+    border-right: 1px solid var(--blue);
+  
+}
+.btn-j{
+    border-right: 1px solid var(--blue);
+}
+.btn-all{
+  
+    border-radius: 0 10px 10px 0;
+}
