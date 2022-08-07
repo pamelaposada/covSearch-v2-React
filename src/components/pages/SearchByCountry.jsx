@@ -1,15 +1,14 @@
 import './SearchByCountry.css'
-import { Autocomplete } from './Autocomplete'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useRef, useState } from 'react'
-import SearchUs from './searchComponents/SearchUs'
 
 import BarChart from './searchComponents/BarChart'
 import BarComparisonChart from './searchComponents/BarComparisonChart'
 import Loading from '../UI/Loading'
+
 
 library.add(faMagnifyingGlass)
 
@@ -80,7 +79,9 @@ function SearchByCountry(){
                 const url = `https://coronavirus.m.pipedream.net`
                 const response = await fetch(url)
                 const data = await response.json();
-                setRowData(data.rawData)
+                const rawData = data.rawData.filter(item => item.Country_Region !== 'US');
+                console.log({ data, rawData });
+                setRowData(rawData);
             }
             catch(err){
                 console.log(err)
@@ -89,21 +90,11 @@ function SearchByCountry(){
         fetchCountryData()
      }, [])
 
-     useEffect(()=>{
+     useEffect(()=> {
 
-        if(requestUserInput !== null && requestUserInput === "US"){
-            console.log("mami")
-            // All US
-            // const filterSeach = Object.entries(rowData).filter(item=> item[1].Country_Region === requestUserInput)
-            // console.log(filterSeach)
+    //    Modify letter(US out of scope)
 
-            // By Province
-            // const filterByProvince = filterSeach.filter(item=> item[1].Province_State === "Alabama")
-            // console.log(filterByProvince)
- 
-        }
-
-        if(requestUserInput !== null && requestUserInput !== "US"){
+        if(requestUserInput !== null){
             const filterSeach = Object.entries(rowData).filter(item=> item[1].Country_Region === requestUserInput)
             console.log(filterSeach)
             setDataSelection(filterSeach)
@@ -134,7 +125,7 @@ function SearchByCountry(){
             </div>
                 <div className='dynamic-style' style={onHideStyle}>
                     <BarChart chartData={dataSelection}/> 
-                    <BarComparisonChart comparisonData ={dataSelection}/> 
+                    <BarComparisonChart comparisonData={dataSelection}/> 
                 </div>
 
         </div>

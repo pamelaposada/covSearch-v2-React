@@ -1,39 +1,57 @@
 import './Dashboard.css'
 import {MapContainer, GeoJSON, Popup, LayerGroup} from "react-leaflet"
 import countriesData from '../data/countries.json'
-import { createRef, useEffect, useRef, useState } from 'react'
+import { createRef, useEffect, useRef, useState, useCallback } from 'react'
 import Row from './dashboardComponents/Row'
 import Loading from '../UI/Loading'
 
+/**
+ * allData: Object with shape {[countryName]: { All: {...}}}
+ * countryName: string
+ */
+function getCasesCount(allData, countryName) {
+    if (countryName === "United States of America") {
+        countryName = 'US';
+    }
+
+    const foundCountryDataSet = Object.entries(allData).find(item=> item[0] === countryName);
+    console.log(foundCountryDataSet)
+    if (foundCountryDataSet === undefined) {
+        return 'Unknown';
+    }
+    return foundCountryDataSet[1].All.confirmed;
+}
 
 
+const geoJsonData = countriesData.features
+
+// Map style
+const countryStyle = {
+    fillColor: "#3f27da",
+    fillOpacity: 1,
+    color: "#181924",
+    weight: 1,
+}
 
 function Dashboard(){
-    const geoJsonData = countriesData.features
-    const [countryName, setCountryName] = useState(null)
-    const [worldCases, setWorldCases] = useState([])
-    const [countryMatch, setCountryMatch] = useState(null)
+    const [selectedCountryName, setSelectedCountryName] = useState(null)
+    // const [selectedCountryCasesCount, setSelectedCountryCasesCount] = useState(null) // TODO: es un estado derivado?
+    const [worldCases, setWorldCases] = useState({})
     const [top20, setTop20] = useState([])
-    const [btnFilter, setBtnFilter] = useState(null)
-    const [geoDataTest, setGeoDataTest] = useState([])
+    const [activeFilter, setActiveFilter] = useState('highest');
+    // const [geoDataTest, setGeoDataTest] = useState([])
    
     const geoJsonLayer = createRef()
 
-    console.log(countryName)
+    console.log('selectedCountryName', selectedCountryName)
     // console.log(worldCases)
     console.log(geoJsonData)
-    console.log(countryMatch)
+    // console.log(selectedCountryCasesCount)
     // console.log(countryObject)
     // console.log(top20)
-    // console.log(btnFilter)
+    // console.log(activeFilter)
 
-    // Map style
-    const countryStyle = {
-        fillColor: "#3f27da",
-        fillOpacity: 1,
-        color: "#181924",
-        weight: 1,
-    }
+
     
  
 
@@ -53,20 +71,27 @@ function Dashboard(){
         }
         fetchCovidWorldData()
     }, [])
-    
-    console.log(countryMatch)
+
 
     // MapClick functions
-    const selectCountry = (e) => {
-        setCountryName(e.target.feature.properties.ADMIN)     
+    const handleClickCountry = (event) => {
+        console.log(event);
+        const clickedCountryName = event.target.feature.properties.ADMIN;
+        // setSelectedCountryName(clickedCountryName);
+
+        const casesCountForFeature = getCasesCount(worldCases, clickedCountryName);
+        console.log(`calculando cases para ${clickedCountryName}: ${casesCountForFeature}`);
+
+        event.target.bindPopup(`<center>${clickedCountryName}</center> <br />
+            Cases : ${casesCountForFeature}`).openPopup();
     }
 
-    const tryFunction = (e)=> {
+    const hoverCountry = (e)=> {
         e.target.setStyle({
             fillColor: "#902222"
         })
     }
-    const tryFunctionTwo = (e)=> {
+    const blurCountry = (e)=> {
         e.target.setStyle({
             fillColor: "#3f27da"
         })
@@ -78,61 +103,27 @@ function Dashboard(){
     //     }
     // },[geoJsonData, geoJsonLayer])
     
-    
-    function onEachCountry(countryNameData, layer) {        
-        const getCountryName = countryNameData.properties.ADMIN
+    const handleEachCountryOnMount = useCallback(
+        function(feature, layer) {
+            
 
-        layer.bindPopup(`<center>${getCountryName}</center> <br />
-        Cases : ${countryMatch} `)
-
-        layer.on('mouseover', tryFunction)
-        layer.on('mouseout', tryFunctionTwo)
-       
-        layer.on({
-            click: selectCountry,
-            // mouseover: changeColor,
-        })
-    }
-    
-    useEffect(()=> {
-        const handleCountryClick = () => {
-            if(Object.keys(worldCases).length && countryName != null){
-                console.log("yes")
-         
-                const findCountry = (Object.entries(worldCases).find(item=> item[0] === countryName)) 
-
-                if (findCountry !== undefined){
-                    const NumCases = findCountry[1].All.confirmed
-                    console.log(NumCases)
-                    setCountryMatch(NumCases)
-                }
-                else if(findCountry === undefined && countryName === "United States of America"){
-                    const NumCases = worldCases.US.All.confirmed
-                    console.log(NumCases)
-                    setCountryMatch(NumCases)
-                }
-                else{
-                    const NumCases = 'Unknown'
-                    console.log(NumCases)
-                    setCountryMatch(NumCases)
-                }
-
-                console.log(findCountry)       
-                // setCountryObject(findCountry[1].All)
-
-                const geoJsonCountry = geoJsonData.map(item=>item.properties.ADMIN)
-                // console.log(countryListArray)
-                // console.log(geoJsonCountry)
-                
-            }else{
-                console.log("nope")
-            }
-        }
-        if(Object.keys(worldCases).length){
-            handleCountryClick()
-        }
+            layer.on('mouseover', hoverCountry)
+            layer.on('mouseout', blurCountry)
         
-    },[countryName, geoJsonData, worldCases])
+            layer.on({
+                click: handleClickCountry,
+            })
+        },[worldCases]);
+
+    // useEffect(() => {
+    //     if(Object.keys(worldCases).length && selectedCountryName != null) {
+    //         console.log("yes")
+    //         const casesCount = getCasesCount(worldCases, selectedCountryName);
+    //         setSelectedCountryCasesCount(casesCount);
+    //     } else {
+    //         console.log("nope")
+    //     }
+    // }, [selectedCountryName, worldCases])
 
 
     // Country List Top20 - Btns
@@ -143,19 +134,19 @@ function Dashboard(){
             if(Object.keys(worldCases).length){
                 const filterCountryData = Object.values(worldCases).map(item =>item.All)
     
-                if(btnFilter === null || btnFilter === "highest"){
+                if(activeFilter === null || activeFilter === "highest"){
                     const sortedArray = filterCountryData.sort((a , b)=>(b.confirmed - a.confirmed)).slice(1, arraysize)
                     setTop20(sortedArray)
                 }
-                else if(btnFilter === "lowest"){
+                else if(activeFilter === "lowest"){
                     const sortedArray = filterCountryData.sort((a , b)=>(a.confirmed - b.confirmed)).slice(13, arraysize + 12)
                     setTop20(sortedArray)
                 }
-                else if(btnFilter === "population"){
+                else if(activeFilter === "population"){
                     const sortedArray = filterCountryData.sort((a , b)=>(b.population - a.population)).slice(0, arraysize - 1)
                     setTop20(sortedArray)
                 }
-                else if(btnFilter === "deaths"){
+                else if(activeFilter === "deaths"){
                     const sortedArray = filterCountryData.sort((a , b)=>(b.deaths - a.deaths)).slice(1, arraysize)
                     setTop20(sortedArray)
                 }
@@ -164,12 +155,12 @@ function Dashboard(){
         if(Object.keys(worldCases).length ){
             top20Countries()
         }
-    },[btnFilter, worldCases])
+    },[activeFilter, worldCases])
 
     function handleBtnsFilter(e) {
         e.preventDefault()
         console.log(e.target.value)
-        setBtnFilter(e.target.value)
+        setActiveFilter(e.target.value)
     }
 
     if(worldCases === []){
@@ -182,14 +173,13 @@ function Dashboard(){
         
             <div className='map-div'>
                 <MapContainer center={[30, 10]} zoom={1} minZoom={2} maxZoom={4} dragging={true} zoomControl={false} >
-                    <GeoJSON 
-                    data={countriesData.features} 
-                    style={countryStyle}
-                    onEachFeature={onEachCountry}
-                    // ref={geoJsonLayer}
-                    key={countryMatch}
-                
-                    />
+                    {Object.keys(worldCases).length > 0 && <GeoJSON 
+                        data={countriesData.features} 
+                        style={countryStyle}
+                        onEachFeature={handleEachCountryOnMount}
+                        // ref={geoJsonLayer}
+                        // key={selectedCountryCasesCount}    
+                    />}
  
                     
                 </MapContainer>
