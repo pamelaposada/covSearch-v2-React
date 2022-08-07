@@ -17,9 +17,9 @@ function Contact(){
             <div className="start-seach-section">
                 <div className="intro-index contact-section">
                     <h6>Send Us Your Enquiries and suggestions to:</h6>
-                    <p> <FontAwesomeIcon icon="fa-solid fa-envelope-circle-check" /> contact@covsearch.com</p>
-                    <p> <FontAwesomeIcon icon="fa-solid fa-phone-flip" />61 90007666</p>
-                    <p> <FontAwesomeIcon icon="fa-solid fa-map-location-dot" />Australia</p>
+                    <p> <FontAwesomeIcon icon="fa-solid fa-envelope-circle-check" /> somemail@covsearch.com</p>
+                    <p> <FontAwesomeIcon icon="fa-solid fa-phone-flip" /> Some phone number: 61 111110000</p>
+                    <p> <FontAwesomeIcon icon="fa-solid fa-map-location-dot" /> Australia</p>
 
                 </div>
             </div>

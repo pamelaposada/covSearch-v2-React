@@ -22,7 +22,6 @@ function getCasesCount(allData, countryName) {
     return foundCountryDataSet[1].All.confirmed;
 }
 
-
 const geoJsonData = countriesData.features
 
 // Map style
@@ -39,23 +38,17 @@ function Dashboard(){
     const [worldCases, setWorldCases] = useState({})
     const [top20, setTop20] = useState([])
     const [activeFilter, setActiveFilter] = useState('highest');
-    // const [geoDataTest, setGeoDataTest] = useState([])
-   
-    const geoJsonLayer = createRef()
 
-    console.log('selectedCountryName', selectedCountryName)
+   
+
+    // console.log('selectedCountryName', selectedCountryName)
     // console.log(worldCases)
-    console.log(geoJsonData)
+    // console.log(geoJsonData)
     // console.log(selectedCountryCasesCount)
     // console.log(countryObject)
     // console.log(top20)
     // console.log(activeFilter)
 
-
-    
- 
-
-  
     // Cov-19 world cases
     useEffect(()=> {
         const fetchCovidWorldData = async ()=> {
@@ -96,12 +89,6 @@ function Dashboard(){
             fillColor: "#3f27da"
         })
     }
-
-    // useEffect(()=> {
-    //     if(geoJsonLayer.current){
-    //         geoJsonLayer.current.clearLayers().addData(geoJsonData)
-    //     }
-    // },[geoJsonData, geoJsonLayer])
     
     const handleEachCountryOnMount = useCallback(
         function(feature, layer) {
@@ -115,15 +102,7 @@ function Dashboard(){
             })
         },[worldCases]);
 
-    // useEffect(() => {
-    //     if(Object.keys(worldCases).length && selectedCountryName != null) {
-    //         console.log("yes")
-    //         const casesCount = getCasesCount(worldCases, selectedCountryName);
-    //         setSelectedCountryCasesCount(casesCount);
-    //     } else {
-    //         console.log("nope")
-    //     }
-    // }, [selectedCountryName, worldCases])
+
 
 
     // Country List Top20 - Btns

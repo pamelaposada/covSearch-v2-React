@@ -3,7 +3,7 @@ import './SearchByCountry.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import BarChart from './searchComponents/BarChart'
 import BarComparisonChart from './searchComponents/BarComparisonChart'
@@ -18,9 +18,6 @@ function SearchByCountry(){
     const [requestUserInput, setRequestUserInput]= useState(null)
     const [rowData, setRowData] = useState(null)
     const [dataSelection, setDataSelection] = useState([])
-    const [errorMessage, setErrorMessage] = useState(false)
-    
-    const countRenders = useRef(0)
 
     // Chart style
     const onHideStyle = dataSelection.length === 0 ? {display: "none"} : {display: "block"}
@@ -30,14 +27,11 @@ function SearchByCountry(){
 
     const inputErrorStyle = countryList.includes(requestUserInput) || requestUserInput === null ? {display: "none"} :{display: "block"}
 
-
-
-    // console.log(countryList)
-    console.log(rowData)
-    console.log(requestUserInput)
-    console.log(dataSelection)
-    console.log(inputErrorStyle)
-    console.log(country)
+    // console.log(rowData)
+    // console.log(requestUserInput)
+    // console.log(dataSelection)
+    // console.log(inputErrorStyle)
+    // console.log(country)
 
 
     const saveUserInput = (e) => {
@@ -72,8 +66,7 @@ function SearchByCountry(){
 
 
    useEffect(()=> {
-      // count the number of renders
-        // countRenders.current = countRenders.current + 1
+        //    Modify later(US out of scope for now...)
         const fetchCountryData = async ()=> {
             try{
                 const url = `https://coronavirus.m.pipedream.net`
@@ -91,8 +84,6 @@ function SearchByCountry(){
      }, [])
 
      useEffect(()=> {
-
-    //    Modify letter(US out of scope)
 
         if(requestUserInput !== null){
             const filterSeach = Object.entries(rowData).filter(item=> item[1].Country_Region === requestUserInput)
