@@ -40,18 +40,14 @@ Covsearch is a web application that allows you to search for Covid-19 cases arou
     <li>VSCode</li>
 </ul>
 
-<h3>Wireframe design and predevelopment</h3>
+<h3>Screenshoots</h3>
 
-Home -> Website overview -> Search Country
-<img src="https://github.com/pamelaposada/covsearch-react/blob/main/project-proposal/home.png" alt="home page">
+<img src="https://github.com/pamelaposada/covsearch-react/blob/main/screenshoots/covsearch-4.png" alt="home page">
 
-Dashboard -> Hover country -> Show overview per continent and favorite search
+<img src="https://github.com/pamelaposada/covsearch-react/blob/main/screenshoots/covsearch-3.png" alt="search">
 
-<img src="https://github.com/pamelaposada/covsearch-react/blob/main/project-proposal/dashboard.png" alt="dashboard">
+ <img src="https://github.com/pamelaposada/covsearch-react/blob/main/screenshoots/covsearch-1.png" alt="search by country">
 
-Search by country -> Type Item -> Show results -> Filter Result
+<img src="https://github.com/pamelaposada/covsearch-react/blob/main/screenshoots/covsearch-2.png" alt="dashboard">
 
- <img src="https://github.com/pamelaposada/covsearch-react/blob/main/project-proposal/search-by-country.png" alt="search by country">
-
-Contact -> Contact information
-<img src="https://github.com/pamelaposada/covsearch-react/blob/main/project-proposal/contact.png" alt="contact">
+<img src="https://github.com/pamelaposada/covsearch-react/blob/main/screenshoots/covsearch-5.png" alt="home">
