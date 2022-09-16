@@ -12,7 +12,6 @@ Covsearch is a web application that allows you to search for Covid-19 cases arou
   <li>Show a dashboard with a current world overview of covid-19 cases</li>
   <li>Filter results</li>
   <li>Display a map of the world with total cases by country</li>
-  <li>Add a favorite search</li>
  
 </ul>
 
