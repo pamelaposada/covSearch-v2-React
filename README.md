@@ -20,23 +20,23 @@ Covsearch is a web application that allows you to search for Covid-19 cases arou
 
 <h3>Technologies</h3>
 
-<h2>Programming languages</h2>
+<h4>Programming languages</h4>
 <ul>
     <li>JavaScript</li>
     <li>CSS</li>
     <li>HTML</li> 
 </ul>
-<h2>Frameworks</h2>
+<h4>Frameworks</h4>
 <ul>
     <li>ReactJS</li>
 </ul>
-<h2>Libraries</h2>
+<h4>Libraries</h4>
 <ul>
     <li>ChartJS</li>
     <li>Leaflet</li>
     <li>Fontawesome</li>
 </ul>
-<h2>Deployment and tools</h2>
+<h4>Deployment and tools</h4>
 <ul>
     <li>Heroku</li>
     <li>VSCode</li>
