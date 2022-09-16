@@ -104,3 +104,19 @@
     bottom: -200px;
     display: flex;
   }
+
+/* Media queries */
+
+@media only screen and (min-width: 450px) and (max-width: 720px) {
+  .start-seach-section{
+    height: 500px;
+    
+  }
+  .intro-index {
+    width: 400px;
+    padding: 0 10px;
+  }
+  .intro-index p{
+    font-size: 14px;
+  }
+}

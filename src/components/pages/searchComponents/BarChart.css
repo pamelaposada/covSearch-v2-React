@@ -14,3 +14,20 @@
     margin-bottom: 60px;
 
 }
+
+/* Media queries */
+
+@media only screen and (min-width: 400px) and (max-width: 720px) {
+    .chart-div{
+      height: 250px;
+    }
+  
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1150px) {
+
+    .chart-div{
+        height: 450px;
+    }
+   
+}

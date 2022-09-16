@@ -101,3 +101,31 @@
   
     border-radius: 0 10px 10px 0;
 }
+
+/* Media queries */
+
+@media only screen and (min-width: 450px) and (max-width: 720px) {
+
+    .dashboard-page{
+        height: 1600px;
+    }
+    .dashboard-page h1 {
+    /* padding: 90px 50px; */
+    text-align: center;
+    }
+    .btns{
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn{
+        border-radius: 20px;
+    }
+    .container-bar{
+        height: 65px;
+    }
+    .container-bar h3 {
+        font-size: 13px;
+    }
+}

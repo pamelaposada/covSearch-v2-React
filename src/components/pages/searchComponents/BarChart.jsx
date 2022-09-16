@@ -2,9 +2,6 @@ import "./BarChart.css"
 
 import { Bar } from "react-chartjs-2"
 import {Chart as ChartJS} from 'chart.js/auto'
-import { useState } from "react"
-
-
 
 const BarChart =(props) => {
 
@@ -37,10 +34,6 @@ const BarChart =(props) => {
             responsive: true
         }
 
-    
-
-    // console.log(data)
-    // console.log(labels)
 
     return(
        

@@ -322,4 +322,31 @@
 
 }
 
+@media only screen and (min-width: 400px) and (max-width: 720px) {
+
+  .dashboard-page{
+    margin-bottom: 150px;
+  }
+ .dynamic-style{
+  height: 900px;
+ }
+}
+@media only screen and (min-width: 720px) and (max-width: 1024px) {
+
+  .dynamic-style{
+   height: 1300px;
+  }
+ 
+ }
+ @media only screen and (min-width: 721px) and (max-width: 999px) {
+  .submit-btn{
+    top: -150px;
+    left: 300px;
+  }
+
+ }
+
+
+
+
 

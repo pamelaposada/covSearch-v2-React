@@ -11,7 +11,7 @@ function Home(){
         <div className="start-seach-section">
             <div className="intro-index">
                 <h6>Find Covid-19 Cases Around the World</h6>
-                <p>Covsearch is a web application that allows you to search for Covid-19 cases around the world. By using Covsearch, you can get an updated Covid-19 overview for any country in the world, check their total cases, total deaths, and copare covid-19 cases between countries around the world. You only need to start a new search and type the country name on the search bar.</p>
+                <p>Covsearch is a web application that allows you to search for Covid-19 cases around the world. By using Covsearch, you can get an updated Covid-19 overview for any country in the world, check their total cases, total deaths, and compare covid-19 cases between countries around the world. You only need to start a new search and type the country name on the search bar.</p>
                 <Link className="bt-start-search" to="/search">Start Search</Link>
             </div>
 

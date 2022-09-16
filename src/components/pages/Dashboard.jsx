@@ -1,21 +1,17 @@
 import './Dashboard.css'
-import {MapContainer, GeoJSON, Popup, LayerGroup} from "react-leaflet"
+import {MapContainer, GeoJSON} from "react-leaflet"
 import countriesData from '../data/countries.json'
-import { createRef, useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Row from './dashboardComponents/Row'
 import Loading from '../UI/Loading'
 
-/**
- * allData: Object with shape {[countryName]: { All: {...}}}
- * countryName: string
- */
+
 function getCasesCount(allData, countryName) {
     if (countryName === "United States of America") {
         countryName = 'US';
     }
 
     const foundCountryDataSet = Object.entries(allData).find(item=> item[0] === countryName);
-    console.log(foundCountryDataSet)
     if (foundCountryDataSet === undefined) {
         return 'Unknown';
     }
@@ -33,21 +29,11 @@ const countryStyle = {
 }
 
 function Dashboard(){
-    const [selectedCountryName, setSelectedCountryName] = useState(null)
-    // const [selectedCountryCasesCount, setSelectedCountryCasesCount] = useState(null) // TODO: es un estado derivado?
+
     const [worldCases, setWorldCases] = useState({})
     const [top20, setTop20] = useState([])
     const [activeFilter, setActiveFilter] = useState('highest');
 
-   
-
-    // console.log('selectedCountryName', selectedCountryName)
-    // console.log(worldCases)
-    // console.log(geoJsonData)
-    // console.log(selectedCountryCasesCount)
-    // console.log(countryObject)
-    // console.log(top20)
-    // console.log(activeFilter)
 
     // Cov-19 world cases
     useEffect(()=> {
@@ -68,12 +54,10 @@ function Dashboard(){
 
     // MapClick functions
     const handleClickCountry = (event) => {
-        console.log(event);
         const clickedCountryName = event.target.feature.properties.ADMIN;
-        // setSelectedCountryName(clickedCountryName);
 
         const casesCountForFeature = getCasesCount(worldCases, clickedCountryName);
-        console.log(`calculando cases para ${clickedCountryName}: ${casesCountForFeature}`);
+        // console.log(`calculating cases for ${clickedCountryName}: ${casesCountForFeature}`);
 
         event.target.bindPopup(`<center>${clickedCountryName}</center> <br />
             Cases : ${casesCountForFeature}`).openPopup();
@@ -90,6 +74,7 @@ function Dashboard(){
         })
     }
     
+    // OnEach leaflet
     const handleEachCountryOnMount = useCallback(
         function(feature, layer) {
             
@@ -101,8 +86,6 @@ function Dashboard(){
                 click: handleClickCountry,
             })
         },[worldCases]);
-
-
 
 
     // Country List Top20 - Btns
@@ -138,7 +121,6 @@ function Dashboard(){
 
     function handleBtnsFilter(e) {
         e.preventDefault()
-        console.log(e.target.value)
         setActiveFilter(e.target.value)
     }
 
@@ -155,9 +137,7 @@ function Dashboard(){
                     {Object.keys(worldCases).length > 0 && <GeoJSON 
                         data={countriesData.features} 
                         style={countryStyle}
-                        onEachFeature={handleEachCountryOnMount}
-                        // ref={geoJsonLayer}
-                        // key={selectedCountryCasesCount}    
+                        onEachFeature={handleEachCountryOnMount}  
                     />}
  
                     

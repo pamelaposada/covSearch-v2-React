@@ -27,11 +27,8 @@ function SearchByCountry(){
 
     const inputErrorStyle = countryList.includes(requestUserInput) || requestUserInput === null ? {display: "none"} :{display: "block"}
 
-    // console.log(rowData)
-    // console.log(requestUserInput)
-    // console.log(dataSelection)
-    // console.log(inputErrorStyle)
-    // console.log(country)
+    //  Error Message text
+    const displayErrorMessage = requestUserInput === "US" ? "This data is not available at the moment" : "Wrong country. Try again"
 
 
     const saveUserInput = (e) => {
@@ -59,7 +56,6 @@ function SearchByCountry(){
 
         else if (/\s/.test(country) === false){
             const countryString = country.charAt(0).toUpperCase()+ country.slice(1)
-            console.log(countryString)
             setRequestUserInput(countryString)
         }
     }
@@ -73,7 +69,6 @@ function SearchByCountry(){
                 const response = await fetch(url)
                 const data = await response.json();
                 const rawData = data.rawData.filter(item => item.Country_Region !== 'US');
-                console.log({ data, rawData });
                 setRowData(rawData);
             }
             catch(err){
@@ -87,11 +82,12 @@ function SearchByCountry(){
 
         if(requestUserInput !== null){
             const filterSeach = Object.entries(rowData).filter(item=> item[1].Country_Region === requestUserInput)
-            console.log(filterSeach)
             setDataSelection(filterSeach)
         }
 
      },[requestUserInput, rowData])
+
+        
 
      if(rowData === null){
         return <Loading/>
@@ -104,14 +100,14 @@ function SearchByCountry(){
             </div>
             <div className="search-section">
                 <div id="autocomplete">
-                    <input className="user-input" onChange={saveUserInput}></input>
+                    <input className="user-input" onChange={saveUserInput} placeholder="Type a country..."></input>
                 </div>
-                {/* <Autocomplete/> */}
+                {/* <Autocomplete/> later here*/}
                     <button type="button" className="submit-btn" onClick={handleCountryRequest}>
                         <FontAwesomeIcon icon="fa-solid fa-magnifying-glass search-size" />
                     </button> 
                     <div className="input-error" style={inputErrorStyle}>
-                        <p className="error-msg-text">Wrong country. Try again</p>
+                        <p className="error-msg-text">{displayErrorMessage}</p>
                     </div>
             </div>
                 <div className='dynamic-style' style={onHideStyle}>
