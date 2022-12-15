@@ -1,8 +1,5 @@
 <h1>CovSearch</h1>
 
-<h3>Project URL - Heroku</h3>
-
-[Go to website](https://quiet-peak-08322.herokuapp.com/)
 
 <h3>Project Description</h3>
 
