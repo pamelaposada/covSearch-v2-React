@@ -31,8 +31,9 @@ Covsearch is a web application that allows you to search for Covid-19 cases arou
     <li>Leaflet</li>
     <li>Fontawesome</li>
 </ul>
-<h3>Deployment and tools</h3>
+<h3>Tools</h3>
 <ul>
+    <li>Browser Developer tools</li>
     <li>VSCode</li>
 </ul>
 <h3>Package Manager</h3>
